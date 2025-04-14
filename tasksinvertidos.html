@@ -54,6 +54,20 @@
             color: #6b7280;
             text-align: right;
         }
+
+        .notification {
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        #saveProgress {
+            transition: background-color 0.2s ease;
+        }
+
+        #saveProgress:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,6 +77,14 @@
 
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Plan de Desarrollo Interactivo: Plataforma de Recompensas</h1>
+        <div class="flex justify-end mb-4">
+            <button id="saveProgress" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                </svg>
+                Guardar Progreso
+            </button>
+        </div>
 
         <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
             <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
@@ -415,7 +437,7 @@
                         <label class="text-gray-700">Monitorización post-despliegue inicial.</label>
                     </li>
                 </ul>
-                <div class="flex space-x-2">
+                <div class="flex space-x-2"></div>
                     <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
                     <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
                 </div>
