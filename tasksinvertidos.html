@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Desarrollo Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font as suggested in guidelines */
+        }
+        .task-item.completed label {
+            text-decoration: line-through;
+            color: #9ca3af; /* Tailwind gray-400 */
+        }
+        .phase-content {
+            /* Smooth transition for collapse/expand */
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
+         /* Style for phase header */
+        .phase-header {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .phase-header:hover {
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+        }
+        /* Arrow indicator for collapse/expand */
+         .arrow {
+            transition: transform 0.3s ease;
+        }
+        .collapsed .arrow {
+             transform: rotate(-90deg);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            margin: 8px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #6366f1;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-align: right;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Plan de Desarrollo Interactivo: Plataforma de Recompensas</h1>
+
+        <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
+            <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-indigo-600">Fase 1: Planificación y Configuración (Semana 1)</h2>
+                 <span class="arrow text-gray-500">&#9660;</span> 
+            </div>
+            <div class="phase-content p-4">
+                <p class="text-sm text-gray-500 mb-3"><strong>Hito 1:</strong> Entorno de desarrollo listo. Proyecto base inicializado (Frontend/Backend). Esquema DB definido.</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% completado</div>
+                </div>
+                <ul class="space-y-2 mb-4 task-list">
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Refinar requisitos detallados (si es necesario).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Confirmar arquitectura técnica (React, Supabase, Tailwind CSS, etc.).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Configurar entorno de desarrollo local.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Inicializar proyecto React.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Configurar Tailwind CSS según guía de estilo.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Configurar proyecto Supabase (Base de datos, Auth, Storage).</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Definir esquema inicial de la base de datos.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Configurar sistema de control de versiones (Git).</label>
+                    </li>
+                </ul>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
+            <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-indigo-600">Fase 2: Desarrollo Backend Core (Semana 1-2)</h2>
+                 <span class="arrow text-gray-500">&#9660;</span>
+            </div>
+             <div class="phase-content p-4">
+                <p class="text-sm text-gray-500 mb-3"><strong>Hito 2:</strong> Autenticación funcional. Gestión básica de usuarios y roles implementada en backend.</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% completado</div>
+                </div>
+                <ul class="space-y-2 mb-4 task-list">
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Implementar autenticación de usuarios (Registro, Login, Logout) con Supabase Auth.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Definir Roles y Permisos (Alumno, Profesor, Supervisor, Admin).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Implementar Row Level Security (RLS) básica en Supabase.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Crear funciones/endpoints básicos de Supabase para gestión de usuarios.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Configurar Supabase Storage para avatares.</label>
+                    </li>
+                </ul>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
+            <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-indigo-600">Fase 3: Desarrollo Frontend Base y Componentes UI (Semana 2-3)</h2>
+                 <span class="arrow text-gray-500">&#9660;</span>
+            </div>
+             <div class="phase-content p-4">
+                 <p class="text-sm text-gray-500 mb-3"><strong>Hito 3:</strong> Layout principal y componentes UI clave desarrollados. Flujo de autenticación frontend funcional.</p>
+                 <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% completado</div>
+                </div>
+                <ul class="space-y-2 mb-4 task-list">
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Crear la estructura principal del layout.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar componentes UI reutilizables (Botones, Cards, etc.).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Integrar el set de iconos elegido.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Implementar la lógica de enrutamiento básica.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Crear páginas base (Login, Registro, Dashboard).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Implementar el flujo de Login/Registro conectando con Supabase Auth.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Asegurar responsividad básica del layout principal.</label>
+                    </li>
+                </ul>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
+            <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-indigo-600">Fase 4: Desarrollo Funcionalidades Principales (Semana 4-6)</h2>
+                 <span class="arrow text-gray-500">&#9660;</span>
+            </div>
+             <div class="phase-content p-4">
+                <p class="text-sm text-gray-500 mb-3"><strong>Hito 4:</strong> Funcionalidades clave para roles Alumno y Profesor completadas e integradas (End-to-End).</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% completado</div>
+                </div>
+                 <h3 class="font-medium text-gray-600 mb-1">Backend:</h3>
+                <ul class="space-y-2 mb-4 task-list">
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar lógica y funciones/endpoints para enviar/recibir recompensas.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar funciones/endpoints para obtener historial de transacciones.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar funciones/endpoints para gestión de alumnos por profesor.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar funciones/endpoints para vistas de supervisor/admin.</label>
+                    </li>
+                 </ul>
+                 <h3 class="font-medium text-gray-600 mb-1 mt-4">Frontend:</h3>
+                 <ul class="space-y-2 mb-4 task-list">
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar Dashboard Alumno (ver saldo, historial, perfil, avatar).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar Dashboard Profesor (ver alumnos, enviar recompensas, historial).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Integrar llamadas a Supabase para Alumno y Profesor.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Implementar feedback visual (carga, éxito, error).</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Implementar elementos de gamificación visual (si aplica).</label>
+                    </li>
+                </ul>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
+            <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
+                 <h2 class="text-lg font-semibold text-indigo-600">Fase 5: Desarrollo Funcionalidades Secundarias y Admin (Semana 7)</h2>
+                 <span class="arrow text-gray-500">&#9660;</span>
+            </div>
+             <div class="phase-content p-4">
+                <p class="text-sm text-gray-500 mb-3"><strong>Hito 5:</strong> Funcionalidades para roles Supervisor y Admin completadas e integradas.</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% completado</div>
+                </div>
+                 <h3 class="font-medium text-gray-600 mb-1">Frontend:</h3>
+                <ul class="space-y-2 mb-4 task-list">
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar Dashboard Supervisor (vistas agregadas, reportes básicos).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Desarrollar Dashboard Admin (gestión completa de usuarios, configuración).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Integrar llamadas a Supabase para Supervisor/Admin.</label>
+                    </li>
+                </ul>
+                 <h3 class="font-medium text-gray-600 mb-1 mt-4">Backend:</h3>
+                 <ul class="space-y-2 mb-4 task-list">
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Refinar/Completar funciones/endpoints necesarios para Supervisor/Admin.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Ajustar RLS según sea necesario para estos roles.</label>
+                    </li>
+                </ul>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
+            <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
+                 <h2 class="text-lg font-semibold text-indigo-600">Fase 6: Pruebas, Refinamiento y Accesibilidad (Semana 8-9)</h2>
+                 <span class="arrow text-gray-500">&#9660;</span>
+            </div>
+             <div class="phase-content p-4">
+                <p class="text-sm text-gray-500 mb-3"><strong>Hito 6:</strong> Plataforma probada internamente. Mejoras de accesibilidad y rendimiento aplicadas. Lista para UAT.</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% completado</div>
+                </div>
+                <ul class="space-y-2 mb-4 task-list">
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Pruebas unitarias y de integración (Frontend y Backend).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Pruebas End-to-End de los flujos principales.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Revisión y aplicación de directrices de accesibilidad (a11y).</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Pruebas de responsividad en múltiples dispositivos/navegadores.</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Refinamiento de UI/UX basado en pruebas internas.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Optimización de rendimiento (imágenes, código).</label>
+                    </li>
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Revisión de seguridad (RLS, validaciones).</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Preparación de datos de prueba.</label>
+                    </li>
+                </ul>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+         <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden phase-container">
+            <div class="phase-header bg-gray-50 p-4 flex justify-between items-center border-b border-gray-200">
+                 <h2 class="text-lg font-semibold text-indigo-600">Fase 7: User Acceptance Testing (UAT) y Despliegue (Semana 10)</h2>
+                 <span class="arrow text-gray-500">&#9660;</span>
+            </div>
+             <div class="phase-content p-4">
+                <p class="text-sm text-gray-500 mb-3"><strong>Hito 7 (Final):</strong> Plataforma desplegada en producción y validada por usuarios clave.</p>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0% completado</div>
+                </div>
+                <ul class="space-y-2 mb-4 task-list">
+                     <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Realizar UAT con usuarios representativos.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Recopilar feedback y realizar ajustes finales.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Corrección de bugs encontrados en UAT.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Configurar entorno de producción.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">(Opcional) Configurar CI/CD.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Realizar despliegue inicial a producción.</label>
+                    </li>
+                    <li class="task-item flex items-center">
+                        <input type="checkbox" class="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox">
+                        <label class="text-gray-700">Monitorización post-despliegue inicial.</label>
+                    </li>
+                </ul>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Añadir nueva tarea..." class="flex-grow p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm new-task-input">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm add-task-button">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Task Completion Handling ---
+            const taskCheckboxes = document.querySelectorAll('.task-checkbox');
+            taskCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', (event) => {
+                    const taskItem = event.target.closest('.task-item');
+                    const phaseContent = event.target.closest('.phase-content');
+                    
+                    if (taskItem) {
+                        taskItem.classList.toggle('completed', event.target.checked);
+                    }
+                    if (phaseContent) {
+                        updatePhaseProgress(phaseContent);
+                    }
+                });
+            });
+
+            // --- Add New Task Handling ---
+            const addTaskButtons = document.querySelectorAll('.add-task-button');
+            addTaskButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const phaseContent = event.target.closest('.phase-content');
+                    const input = phaseContent.querySelector('.new-task-input');
+                    const taskList = phaseContent.querySelector('.task-list');
+                    const taskText = input.value.trim();
+
+                    if (taskText && taskList) {
+                        // Create new task elements
+                        const li = document.createElement('li');
+                        li.className = 'task-item flex items-center';
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.className = 'mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 task-checkbox';
+                        // Add event listener to the new checkbox
+                        checkbox.addEventListener('change', (e) => {
+                             li.classList.toggle('completed', e.target.checked);
+                             updatePhaseProgress(phaseContent);
+                        });
+
+
+                        const label = document.createElement('label');
+                        label.className = 'text-gray-700';
+                        label.textContent = taskText;
+
+                        li.appendChild(checkbox);
+                        li.appendChild(label);
+                        taskList.appendChild(li);
+
+                        // Clear the input field
+                        input.value = '';
+                    } else if (!taskList) {
+                        console.error("Could not find the task list for this phase.");
+                    }
+
+                    // Después de añadir la tarea, actualizar el progreso
+                    if (phaseContent) {
+                        updatePhaseProgress(phaseContent);
+                    }
+                });
+
+                // Allow adding task by pressing Enter in the input field
+                 const inputField = button.previousElementSibling; // Assumes input is right before button
+                 if (inputField && inputField.classList.contains('new-task-input')) {
+                     inputField.addEventListener('keypress', (event) => {
+                         if (event.key === 'Enter') {
+                             event.preventDefault(); // Prevent form submission if inside a form
+                             button.click(); // Trigger the add button click
+                         }
+                     });
+                 }
+            });
+
+             // --- Collapse/Expand Phase Handling ---
+            const phaseHeaders = document.querySelectorAll('.phase-header');
+            phaseHeaders.forEach(header => {
+                const content = header.nextElementSibling; // Assumes content div is immediately after header
+                 const container = header.closest('.phase-container');
+
+                // Initialize: Start all phases collapsed except the first one
+                if (header !== phaseHeaders[0]) {
+                    content.style.maxHeight = '0px';
+                    container.classList.add('collapsed');
+                } else {
+                     content.style.maxHeight = content.scrollHeight + 'px'; // Set initial height for the first phase
+                }
+
+
+                header.addEventListener('click', () => {
+                    const isCollapsed = container.classList.contains('collapsed');
+
+                    if (isCollapsed) {
+                        // Expand
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        container.classList.remove('collapsed');
+                    } else {
+                        // Collapse
+                        content.style.maxHeight = '0px';
+                         container.classList.add('collapsed');
+                    }
+                });
+            });
+
+            // Función para actualizar el progreso de una fase
+            function updatePhaseProgress(phaseContent) {
+                const taskCheckboxes = phaseContent.querySelectorAll('.task-checkbox');
+                const totalTasks = taskCheckboxes.length;
+                if (totalTasks === 0) return;
+
+                const completedTasks = Array.from(taskCheckboxes).filter(checkbox => checkbox.checked).length;
+                const progressPercentage = Math.round((completedTasks / totalTasks) * 100);
+
+                const progressBar = phaseContent.querySelector('.progress-bar-fill');
+                const progressText = phaseContent.querySelector('.progress-text');
+
+                if (progressBar && progressText) {
+                    progressBar.style.width = `${progressPercentage}%`;
+                    progressText.textContent = `${progressPercentage}% completado`;
+                }
+            }
+
+            // Inicializar el progreso de todas las fases
+            document.querySelectorAll('.phase-content').forEach(phaseContent => {
+                updatePhaseProgress(phaseContent);
+            });
+        });
+    </script>
+
+</body>
+</html>
