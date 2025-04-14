@@ -572,6 +572,118 @@
             document.querySelectorAll('.phase-content').forEach(phaseContent => {
                 updatePhaseProgress(phaseContent);
             });
+
+            // Función para guardar el progreso
+            async function saveProgress() {
+                const progressData = [];
+                document.querySelectorAll('.phase-container').forEach(phase => {
+                    const phaseTitle = phase.querySelector('h2')?.textContent || 'Sin título';
+                    const tasks = phase.querySelectorAll('.task-item');
+                    const taskData = Array.from(tasks).map(task => ({
+                        text: task.querySelector('label')?.textContent || '',
+                        completed: task.querySelector('input[type="checkbox"]').checked
+                    }));
+                    progressData.push({
+                        phase: phaseTitle,
+                        tasks: taskData
+                    });
+                });
+
+                try {
+                    const response = await fetch('https://api.github.com/gists', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            public: true,
+                            files: {
+                                'progress.json': {
+                                    content: JSON.stringify(progressData)
+                                }
+                            }
+                        })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        const gistId = data.id;
+                        localStorage.setItem('progressGistId', gistId);
+                        
+                        // Mostrar mensaje de éxito
+                        showNotification('Progreso guardado correctamente', 'success');
+                        
+                        // Actualizar la URL con el ID del Gist
+                        const newUrl = new URL(window.location.href);
+                        newUrl.searchParams.set('gist', gistId);
+                        window.history.pushState({}, '', newUrl);
+                    } else {
+                        throw new Error('Error al guardar el progreso');
+                    }
+                } catch (error) {
+                    showNotification('Error al guardar el progreso', 'error');
+                    console.error('Error:', error);
+                }
+            }
+
+            // Función para cargar el progreso
+            async function loadProgress() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const gistId = urlParams.get('gist') || localStorage.getItem('progressGistId');
+
+                if (!gistId) return;
+
+                try {
+                    const response = await fetch(`https://api.github.com/gists/${gistId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const progressData = JSON.parse(data.files['progress.json'].content);
+
+                        progressData.forEach((phaseData, index) => {
+                            const phase = document.querySelectorAll('.phase-container')[index];
+                            if (!phase) return;
+
+                            phaseData.tasks.forEach((taskData, taskIndex) => {
+                                const taskItem = phase.querySelectorAll('.task-item')[taskIndex];
+                                if (!taskItem) return;
+
+                                const checkbox = taskItem.querySelector('input[type="checkbox"]');
+                                if (checkbox) {
+                                    checkbox.checked = taskData.completed;
+                                    taskItem.classList.toggle('completed', taskData.completed);
+                                }
+                            });
+
+                            updatePhaseProgress(phase.querySelector('.phase-content'));
+                        });
+
+                        showNotification('Progreso cargado correctamente', 'success');
+                    }
+                } catch (error) {
+                    showNotification('Error al cargar el progreso', 'error');
+                    console.error('Error:', error);
+                }
+            }
+
+            // Función para mostrar notificaciones
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg ${
+                    type === 'success' ? 'bg-green-500' : 'bg-red-500'
+                } text-white`;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            // Agregar evento al botón de guardar
+            document.getElementById('saveProgress').addEventListener('click', saveProgress);
+
+            // Cargar progreso al iniciar
+            loadProgress();
         });
     </script>
 
